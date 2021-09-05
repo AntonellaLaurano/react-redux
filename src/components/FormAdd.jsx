@@ -2,6 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { crearRegristro } from "../actions/nomina";
 
+import M from "materialize-css"
+
+import "../css/Buttons.css"
+import "../css/FormAdd.css"
+
 const FormAdd = () => {
 
     const dispatch = useDispatch();
@@ -9,8 +14,8 @@ const FormAdd = () => {
     const [viewForm, setViewForm] = useState(false)
     const [cantidadPago, setCantidadPago] = useState(
         {
-            precioHora: 0,
-            horas: 0
+            precioHora: '',
+            horas: ''
         }
     )
 
@@ -18,6 +23,8 @@ const FormAdd = () => {
 
     const handleAdd = () => {
         setViewForm(!viewForm);
+            var elems = document.querySelectorAll('.modal');
+            M.Modal.init(elems);
     }
 
     const handleChange = (event) => {
@@ -28,26 +35,24 @@ const FormAdd = () => {
     }
 
     const handleSave = () => {
-        const cantidadFinal = horas * precioHora;
-        dispatch(crearRegristro(cantidadFinal));
+        if(!isNaN(horas) && !isNaN(precioHora)) {
+            const cantidadFinal = parseInt(horas) * parseInt(precioHora);
+            dispatch(crearRegristro(cantidadFinal));
+        } else {
+            alert('Error');
+        }
         setCantidadPago({
-            precioHora: 0,
-            horas: 0
+            precioHora: '',
+            horas: ''
         });
     }
 
     return (
         <div>
-            <button onClick={handleAdd} className="btn green">
-                {
-                    viewForm ? "Cerrar" : "Agregar"
-                }
-            </button>
-            {
-                viewForm && 
-                <div className=" animate__animated animate__fadeIn">
+            <button onClick={handleAdd} className="btn buttons modal-trigger" data-target="modalAdd">Add</button>
+                <div id="modalAdd" className="modal animate__animated animate__fadeIn">
                     <div className="input-field col s12">
-                        <label htmlFor="icon_prefix1">Pago por hora: </label>
+                        <label htmlFor="icon_prefix1">Hourly</label>
                         <input 
                             id="icon_prefix1"
                             type="text" 
@@ -56,7 +61,7 @@ const FormAdd = () => {
                             name="precioHora" />
                     </div> 
                     <div className="input-field col s12">
-                        <label htmlFor="icon_prefix2">Pago por horas laboradas: </label>
+                        <label htmlFor="icon_prefix2">Working hours</label>
                         <input 
                             id="icon_prefix2"
                             type="text" 
@@ -64,9 +69,8 @@ const FormAdd = () => {
                             onChange={handleChange}
                             name="horas" />
                     </div> 
-                    <button onClick={handleSave} className="btn purple">Calcular y guardar</button>
+                    <button onClick={handleSave} className="btn buttons modal-close">Calculate and save</button>
                 </div>
-            }
         </div>
     )
 }

@@ -1,6 +1,9 @@
-import { useDispatch } from "react-redux"
-import { logout } from "../actions/auth"
-import { limpiar } from "../actions/nomina"
+import { useDispatch } from "react-redux";
+import { logout } from "../actions/auth";
+import { limpiar } from "../actions/nomina";
+
+import "../css/Navbar.css";
+import "../css/Buttons.css"
 
 const Navbar = () => {
 
@@ -13,12 +16,12 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className="nav-wrapper green">
-            <span className="brand-logo">Calculadora Nominal</span>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <div className="nav-wrapper">
+            <span className="brand-logo">Nominal Calculator</span>
+            <ul className="right">
                 <li>
-                    <button onClick={handleLogout} className="btn red waves-effect waves-light" >Logout</button>
-                    </li>
+                    <button onClick={handleLogout}  className="btn waves-effect waves-light buttons" >Logout</button>
+                </li>
             </ul>
             </div>
         </nav>

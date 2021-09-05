@@ -14,15 +14,15 @@ const AppScreen = () => {
         <>
             <Navbar />
             <div className="container animate__animated animate__zoomIn">
-                <h1 className="center">Hola {name}</h1>
+                <h1 className="center">Hello {name}</h1>
                 <hr/>
                 <FormAdd />
-                <table>
+                <table className="centered">
                     <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Cantidad</th>
-                            <th>Borrar</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>

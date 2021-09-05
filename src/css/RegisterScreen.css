@@ -1,0 +1,24 @@
+.RegisterScreen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(77,87,187);
+    background: linear-gradient(297deg, rgba(77,87,187,1) 0%, rgba(99,124,189,1) 35%, rgba(167,236,236,1) 100%);
+
+
+}
+
+.RegisterCard {
+    padding: 30px 40px;
+    border-radius: 50px;
+    background: white;
+    width: 50%;
+}
+
+.btnRegister {
+    left: 65%;
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
